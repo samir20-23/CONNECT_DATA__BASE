@@ -7,7 +7,6 @@
     <style>
         body{display: flex; justify-content: center; zoom: 1.5;}
         input{margin: 10px;}
-        #dbname{ border: 3px solid black; width: 180px; margin-left: -1px;}
         #table{ border: 2px solid black; width: 180px; margin-left: -1px;}
         p{color: green; text-shadow:  0 0 12px green; position: absolute;}
         span{color: red; text-shadow:  0 0 12px red; position: absolute;}
