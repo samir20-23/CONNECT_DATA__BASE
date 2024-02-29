@@ -32,13 +32,19 @@
       try{
     
         
-        $con = new PDO("mysql:host=localhost;dbname=mydata","SAMIR","samir123")                    ;
+        $con = new PDO("mysql:host=localhost;dbname=mydata","SAMIR","samir123")                      ;
         $con->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION)                             ;
-        $sql ="INSERT INTO testdata(lastname ,firstname , email) 
+        
+        if(empty($firstname)&&empty($lastname)&&empty($email)){
+            echo "<span>* NOTE CONNECT*</span>";
+        }else{
+            $sql ="INSERT INTO testdata(lastname ,firstname , email) 
         VALUES('$lastname','$firstname','$email')"                                                 ;
         $con->exec($sql);
+        echo "<p>* IS CONNECT *</p>";
+        }
       }
-      catch(PDOException){echo "<span>* NOTE CONNECT*</span>";}
+      catch(PDOException $e){echo "<span>* NOTE CONNECT*</span>".$e->getMessage();}
     }
     ?>
     <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
