@@ -7,8 +7,6 @@
     <style>
         body{display: flex; justify-content: center; zoom: 1.5;}
         input{margin: 10px;}
-        #dbname{ border: 3px solid black; width: 180px; margin-left: -1px;}
-        #table{ border: 2px solid black; width: 180px; margin-left: -1px;}
         p{color: green; text-shadow:  0 0 12px green; position: absolute;}
         span{color: red; text-shadow:  0 0 12px red; position: absolute;}
         pre{margin-top: 40px;}
@@ -21,56 +19,36 @@
         border-radius: 5px; 
         position: relative;
         top: 87%;
-        left: 40%;
+        left: 20%;
 }
     </style>
 </head>
 <body>
-    <?php
+    <?php 
     if($_SERVER['REQUEST_METHOD']=="POST"){
-        //fiilter data
-        function funcdata($data){
-            $data=htmlspecialchars($data);
-            $data=stripslashes($data);
-            $data=trim($data);
-            return $data;
-        }
-        //posts
-    $table     = funcdata($_POST['table']);
-
-    $Column1   = funcdata($_POST['Column1']);
-    $Column2   = funcdata($_POST['Column2']);
-    $Column3   = funcdata($_POST['Column3']);
-    //connect
-try{
-    $con = new PDO("mysql:host=localhost;dbname=mydata","SAMIR","samir123");
-    $con->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-
-
-    $sql = "CREATE TABLE $table (
-        $Column1 VARCHAR(30) NOT NULL,
-        $Column2 VARCHAR(50)NOT NULL,
-        $Column3 VARCHAR(50)
-    )";
-$con->exec($sql);
-    echo "<p>* CONNECT *</p>";
-    header("location:4insert-data.php");
-}
-catch(PDOException  ){echo "<span>* NOTE CONNECT *</span>";}
-
-
+       $lastname  = $_POST['lastname']                                                             ;
+       $firstname = $_POST['firstname']                                                            ;
+       $email     = $_POST['email']                                                                ;
+      try{
+    
+        
+        $con = new PDO("mysql:host=localhost;dbname=mydata","SAMIR","samir123")                    ;
+        $con->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION)                             ;
+        $sql ="INSERT INTO testdata(lastname ,firstname , email) 
+        VALUES('$lastname','$firstname','$email')"                                                 ;
+        $con->exec($sql);
+      }
+      catch(PDOException){echo "<span>* NOTE CONNECT*</span>";}
     }
     ?>
-    <form  method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-        <pre>
-NAME TABL:<input  id="table" type="text" name="table">
+    <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+<pre>
+lastname_:<input type="text" name="lastname">
+firstname:<input type="text" name="firstname">
+email____:<input type="email" name="email">
 
-Column 1 :<input type="text" name="Column1" />
-Column 2 :<input type="text" name="Column2" />
-Column 3 :<input type="text" name="Column3" />
-
-<input id="submit" type="submit" name="submit" />
+<input type="submit" id="submit"> 
 </pre>
-    </form>
+</form>
 </body>
 </html>
