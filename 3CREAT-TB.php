@@ -56,7 +56,6 @@ try{
     )";
 $con->exec($sql);
     echo "<p>* CONNECT *</p>";
-     header("location:4insert-data.php");
 }
 catch(PDOException  ){echo "<span>* NOTE CONNECT *</span>";}
 
