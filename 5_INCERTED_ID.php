@@ -34,8 +34,6 @@
             $data=trim($data);
             return $data ;
         }
-        $dbname = filterdata($_POST['dbname']);
-        $tbname = filterdata($_POST['tbname']);
         $c1 = filterdata($_POST['c1']);
         $c2 = filterdata($_POST['c2']);
         $c3 = filterdata($_POST['c3']);
@@ -43,11 +41,11 @@
         $c5 = filterdata($_POST['c5']);
         $c6 = filterdata($_POST['c6']);
         try{
-            $con = new PDO("mysql:host=localhost;dbname=$dbname","SAMIR","samir123");
+            $con = new PDO("mysql:host=localhost;dbname=test","SAMIR","samir123");
             $con->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-            $insert = "INSERT INTO data3(lastname,firstname,email) VALUES('$c1','$c2','$c3')";
+            $insert = "INSERT INTO data1(lastname,firstname,email) VALUES('$c1','$c2','$c3')";
             $con->exec($insert);
-            $insert ="INSERT INTO data3(lastname,firstname,email) VALUES('$c4','$c5','$c6')";
+            $insert ="INSERT INTO data1(lastname,firstname,email) VALUES('$c4','$c5','$c6')";
             $con->exec($insert);
             $last_id= $con->lastInsertId();
             echo "<p>* IS CONNECT *</p>";
@@ -60,7 +58,6 @@
     ?>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
 <pre>
-    <input placeholder="data base" type="text" name="dbname" id="in1"><input placeholder="table" type="text" name="tbname" id="in1">
 <input placeholder="first name value" type="text" name="c1">  <input placeholder="first name value" type="text" name="c4">
 <input placeholder="last  name value" type="text" name="c2">  <input placeholder="last  name value" type="text" name="c5">
 <input placeholder="email value" type="text" name="c3">  <input placeholder="email value" type="text" name="c6">
