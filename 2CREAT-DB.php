@@ -31,18 +31,19 @@ $errcreat = $errempty="";
 
     }
     if($_SERVER['REQUEST_METHOD']=="POST"){
-$namecreat  = $_POST['namecreat'];
+$dbname = $_POST['dbname'];
 try{
     $con = new PDO("mysql:host=localhost;","SAMIR","samir123");
     $con->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-    $table = "CREATE DATABASE $namecreat";
+    $table = "CREATE DATABASE $dbname";
     $con->exec($table);
 
 
-    echo "<p>is connect</p>";
+    echo "<p>is connect✅</p>";
+    header("location:3creat-TABLE.php");
 }
 catch(PDOException){
-    echo  " <pre>note connect</pre>";
+    echo  " <pre>note connect❌</pre>";
 }
      
 
@@ -52,7 +53,7 @@ catch(PDOException){
 
     <form method="post" enctype="multipart/form-data"  action="<?php echo  htmlspecialchars($_SERVER['PHP_SELF']); ?>">
     <span>NAME THE DATA BASE:</span><hr>
-    <input type="text" name="namecreat"><hr>
+    <input type="text" name="dbname"><hr>
     <input id="submit" type="submit">
     </form>
 </body>
