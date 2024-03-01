@@ -22,6 +22,7 @@
         top: 87%;
         left: -36%;
 }
+#next{position: absolute; top: 185px;  left: 58%;}
     </style>
 </head>
 <body>
@@ -36,6 +37,7 @@
         $c1 = filterdata($_POST['c1']);
         $c2 = filterdata($_POST['c2']);
         $c3 = filterdata($_POST['c3']);
+        if(!empty($c1)||!empty($c2)||!empty($c3)){
         try{
             $con = new PDO("mysql:host=localhost;dbname=test","SAMIR","samir123");
             $con->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
@@ -47,8 +49,12 @@
         }
         catch(PDOException ){
             echo "<span>* NOTE CONNECT*</span>";
+        }}
+        else{
+            echo "<span>* FILL *</span>";
         }
     }
+    if(isset($_POST['next'])){ header("location:6_PREPARED_STATMNT.php");};
     ?>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
 <pre>
@@ -56,6 +62,7 @@
 <input placeholder="last  name value" type="text" name="c2"> 
 <input placeholder="email value" type="text" name="c3">
                     <input id="submit" type="submit" name="submit">
+                    <button name="next" id="next">➡️</button>
 </pre>
 </form>
 </body>      
