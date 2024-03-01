@@ -7,7 +7,7 @@
     <style>
         body{display: flex; justify-content: center; zoom: 1.5;}
         input{margin: 10px;}
-        #table{ border: 2px solid black; width: 180px; margin-left: -1px;}
+        #table{ border: 3px solid black; width: 180px; margin-left: -15px;}
         p{color: green; text-shadow:  0 0 12px green; position: absolute;}
         span{color: red; text-shadow:  0 0 12px red; position: absolute;}
         pre{margin-top: 40px;}
@@ -20,7 +20,7 @@
         border-radius: 5px; 
         position: relative;
         top: 87%;
-        left: 40%;
+        left: 35%;
 }
     </style>
 </head>
@@ -35,44 +35,48 @@
             return $data;
         }
         //posts
-    $table     = funcdata($_POST['table']);
+    $tbname    = funcdata($_POST['tbname']) ;
 
+    $Column0   = funcdata($_POST['Column0']);
     $Column1   = funcdata($_POST['Column1']);
     $Column2   = funcdata($_POST['Column2']);
     $Column3   = funcdata($_POST['Column3']);
-    $Column4   = funcdata($_POST['Column4']);
     //connect
 try{
     $con = new PDO("mysql:host=localhost;dbname=test","SAMIR","samir123");
     $con->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
 
 
-    $sql = "CREATE TABLE $table (
-
-        $Column1 INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        $Column2 VARCHAR(30) NOT NULL,
-        $Column3 VARCHAR(50),
-        $Column4 VARCHAR(50)
+    $sql = "CREATE TABLE $tbname (
+        $Column0 INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        $Column1 VARCHAR(30)NOT NULL,
+        $Column2 VARCHAR(50)NOT NULL,
+        $Column3 VARCHAR(50)
     )";
 $con->exec($sql);
-    echo "<p>* CONNECT *</p>";
+    echo "<p>* CONNECT ✅*</p>";
+    header("location:4insert-DATA.php");
 }
-catch(PDOException  ){echo "<span>* NOTE CONNECT *</span>";}
+catch(PDOException  ){echo "<span>* NOTE CONNECT❌ *</span>";}
 
 
     }
     ?>
     <form  method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
         <pre>
-NAME TABL:<input  id="table" type="text" name="table">
-
-Column 1 :<input type="text" name="Column1">
-Column 2 :<input type="text" name="Column2" />
-Column 3 :<input type="text" name="Column3" />
-Column 4 :<input type="text" name="Column4" />
+TABLE NAME :<input id="table" type="text" name="tbname" />
+Column 0 :<input id="in0" type="text" name="Column0" />id
+Column 1 :<input id="in1" type="text" name="Column1" />varchar
+Column 2 :<input id="in2" type="text" name="Column2" />varchar
+Column 3 :<input id="in3" type="text" name="Column3" />varchar
 
 <input id="submit" type="submit" name="submit" />
 </pre>
     </form>
+
+
+    <script>
+     
+    </script>
 </body>
 </html>
