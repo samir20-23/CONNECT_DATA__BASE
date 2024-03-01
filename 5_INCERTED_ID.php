@@ -45,20 +45,15 @@
         try{
             $con = new PDO("mysql:host=localhost;dbname=$dbname","SAMIR","samir123");
             $con->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-
-            $sql = $con->beginTransaction();
-
-            $con->exec("INSERT INTO $tbname(firstname , lastname , email) VALUES('$c1','$c2','$c3')");
-            $con->exec("INSERT INTO $tbname(firstname , lastname , email) VALUES('$c4','$c5','$c6')");
-
-            $con->commit();
-
-            $insert_id = $con->lastInsertId();
+            $insert = "INSERT INTO data3(lastname,firstname,email) VALUES('$c1','$c2','$c3')";
+            $con->exec($insert);
+            $insert ="INSERT INTO data3(lastname,firstname,email) VALUES('$c4','$c5','$c6')";
+            $con->exec($insert);
+            $last_id= $con->lastInsertId();
             echo "<p>* IS CONNECT *</p>";
-            echo "<p id='insert-id'>* LAST INSERT ID IS  $insert_id*</p>";
+            echo "<p id='insert-id'>* LAST INSERT ID IS $last_id*</p>";
         }
         catch(PDOException ){
-            $con->rollBack();
             echo "<span>* NOTE CONNECT*</span>";
         }
     }
