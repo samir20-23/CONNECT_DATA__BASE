@@ -9,6 +9,7 @@
         input{margin: 10px;}
         #in1{margin: 0; border: 3px solid #FF7B7B;}
         p{color: green; text-shadow:  0 0 12px green; position: absolute;}
+        #insert-id{position: absolute;top: -10px;}
         span{color: red; text-shadow:  0 0 12px red; position: absolute;}
         pre{margin-top: 40px;}
         @keyframes pulse {0% {transform: scale(1);}100% {transform: scale(1.1);}}
@@ -51,7 +52,10 @@
             $con->exec("INSERT INTO $tbname(firstname , lastname , email) VALUES('$c4','$c5','$c6')");
 
             $con->commit();
+
+            $insert_id = $con->lastInsertId();
             echo "<p>* IS CONNECT *</p>";
+            echo "<p id='insert-id'>* LAST INSERT ID IS  $insert_id*</p>";
         }
         catch(PDOException ){
             $con->rollBack();
