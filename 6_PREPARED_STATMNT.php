@@ -8,7 +8,7 @@
         body{display: flex; justify-content: center; zoom: 1.5;}
         input{margin: 10px;}
         #in1{margin: 0; border: 3px solid #FF7B7B;}
-        p{color: green; text-shadow:  0 0 12px green; position: absolute;    left: 47%;}
+        p{color: green; text-shadow:  0 0 12px green; position: absolute;    left: 48.5%;}
         #insert-id{position: absolute;top: -10px;}
         span{color: red; text-shadow:  0 0 12px red; position: absolute;    left: 47%;}
         pre{margin-top: 40px;}
@@ -21,7 +21,7 @@
         border-radius: 5px; 
         position: relative;
         top: 87%;
-        left: 1%;
+        left: -1%;
 }
     </style>
 </head>
@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         if(!empty($firstname)||!empty($lastname)||!empty($email)||!empty($firstname2)||!empty($lastname2)||!empty($email2)){
       $con = new PDO("mysql:host=localhost;dbname=test","SAMIR","samir123");
       $con->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-      $sql= $con->prepare("INSERT INTO data2(firstname,lastname,email) VALUES(:firstname , :lastname , :email)");
+      $sql= $con->prepare("INSERT INTO data1(firstname,lastname,email) VALUES(:firstname , :lastname , :email)");
       $sql->bindParam(':firstname',$firstname);
       $sql->bindParam(':lastname',$lastname);
       $sql->bindParam(':email',$email);
