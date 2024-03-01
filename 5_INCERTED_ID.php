@@ -49,12 +49,14 @@
         }
         catch(PDOException ){
             echo "<span>* NOTE CONNECT*</span>";
-        }}
+        }
+        if(isset($_POST['next'])){ header("location:6_PREPARED_STATMNT.php");};
+    }
         else{
             echo "<span>* FILL *</span>";
         }
     }
-    if(isset($_POST['next'])){ header("location:6_PREPARED_STATMNT.php");};
+    
     ?>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
 <pre>
