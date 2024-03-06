@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -26,7 +26,9 @@
 
 
 <h1>PHP MySQL Select Data</h1>
-
+<form action="" method="post">
+    <input type="submit" name="submit"/>
+</form>
 
 
     <?php
@@ -68,4 +70,3 @@
     ?>
     </body>
     </html>
-
